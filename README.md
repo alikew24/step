@@ -12,3 +12,4 @@ To get started:
 
 Then follow the on-screen instructions to set up your repo.
 This is a modification to the readme file to make sure everything works
+Alisha's development!
