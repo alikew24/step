@@ -18,11 +18,15 @@
 function addRandomGreeting() {
   const greetings =
       ['Hello world!', '¡Hola Mundo!', '你好，世界！', 'Bonjour le monde!'];
+  const hobbies = 
+      ['Running', 'Hiking', 'Rock Climbing', 'Photography', 'Traveling'];
+  const links =
+      ['LinkedIn', 'Github', 'Projects', 'Hobbies'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  // Pick a random link.
+  const link = links[Math.floor(Math.random() * links.length)];
 
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+  greetingContainer.innerText = link;
 }
