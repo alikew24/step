@@ -1,4 +1,4 @@
-#content {
+.content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
@@ -8,13 +8,20 @@ nav{
     list-style-type: none;
     background-color: lightblue;
     border: solid;
-    padding: 20px;
+    /* padding: 20px; */
+    margin-bottom: 20px;
+}
+
+#shape{
+    width: 500px;
+    height: 300px;
 }
 
 ul#horizontal-list{
     min-width: 696px;
     list-style:none;
-    padding-top: 20px;
+    /* padding-top: 20px; */
+    padding-left: none;
     /* padding: 20px; */
 }
 ul#horizontal-list li{
