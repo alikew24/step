@@ -3,6 +3,7 @@
   margin-right: auto;
   width: 650px;
   text-align: center;
+  padding: 20px;
 }
 nav {
     list-style-type: none;
@@ -11,11 +12,21 @@ nav {
     margin-bottom: 20px;
 }
 
+h2, p{
+    padding: 20px;
+}
+
 footer {
     list-style-type: none;
     background-color: lightblue;
     border: solid;
     height: 1%;
+}
+
+img {
+    /* padding-top: 20px; */
+    height: 300px;
+    width: 400px;
 }
 
 .project-image {
@@ -50,6 +61,34 @@ ul#navigation li {
 
 .alt2{
    background-color: beige;
+}
+
+.slideshowContainer {
+    position: relative;
+    margin: auto;
+}
+
+.individualSlide {
+    padding-top: 20px;
+    display: none;
+}
+
+.dotContainer {
+    text-align: center;
+}
+
+.dot {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+
+.active {
+  background-color: #717171;
 }
 
 
