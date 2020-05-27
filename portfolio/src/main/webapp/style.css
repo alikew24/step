@@ -44,7 +44,16 @@ ul#navigation li {
     font-size: 20px;
 }
 
+.alt1{
+   background-color: pink;
+}
+
+.alt2{
+   background-color: beige;
+}
+
 
 #greeting-container {
   margin-top: 20px;
+  margin-bottom: 20px;
 }

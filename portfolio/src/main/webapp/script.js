@@ -35,3 +35,4 @@ function addRandomGreeting() {
       greetingContainer.innerHTML = "<a href='projects.html'> Projects </a>";
   }
 }
+
