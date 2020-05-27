@@ -11,15 +11,31 @@ nav {
     margin-bottom: 20px;
 }
 
+footer {
+    list-style-type: none;
+    background-color: lightblue;
+    border: solid;
+    height: 1%;
+}
+
 .project-image {
     width: 500px;
     height: 300px;
 }
 
+ul#footer {
+    list-style: none;
+}
+
+ul#footer li{
+    display: inline;
+    font-family: serif;
+    font-size: 15px;
+    margin: 50px
+}
+
 ul#navigation {
-    min-width: 696px;
     list-style:none;
-    padding-left: none;
 }
 ul#navigation li {
     display: inline;

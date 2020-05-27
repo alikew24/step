@@ -21,12 +21,17 @@ function addRandomGreeting() {
   const hobbies = 
       ['Running', 'Hiking', 'Rock Climbing', 'Photography', 'Traveling'];
   const links =
-      ['LinkedIn', 'Github', 'Projects', 'Hobbies'];
+      ['Projects', 'Hobbies'];
 
   // Pick a random link.
   const link = links[Math.floor(Math.random() * links.length)];
 
   // Add it to the page.
   const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = link;
+  if (link == 'Hobbies'){
+      greetingContainer.innerHTML = "<a href='hobbies.html'> Hobbies </a>";
+  }
+  else {
+      greetingContainer.innerHTML = "<a href='projects.html'> Projects </a>";
+  }
 }
