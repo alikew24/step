@@ -1,9 +1,59 @@
-#content {
+.content {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
+  text-align: center;
 }
+nav {
+    list-style-type: none;
+    background-color: lightblue;
+    border: solid;
+    margin-bottom: 20px;
+}
+
+footer {
+    list-style-type: none;
+    background-color: lightblue;
+    border: solid;
+    height: 1%;
+}
+
+.project-image {
+    width: 500px;
+    height: 300px;
+}
+
+ul#footer {
+    list-style: none;
+}
+
+ul#footer li{
+    display: inline;
+    font-family: serif;
+    font-size: 15px;
+    margin: 50px
+}
+
+ul#navigation {
+    list-style:none;
+}
+ul#navigation li {
+    display: inline;
+    padding: 20px;
+    font-family: serif;
+    font-size: 20px;
+}
+
+.alt1{
+   background-color: pink;
+}
+
+.alt2{
+   background-color: beige;
+}
+
 
 #greeting-container {
   margin-top: 20px;
+  margin-bottom: 20px;
 }
