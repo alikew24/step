@@ -60,32 +60,32 @@ ul#navigation li {
 }
 
 .page-item:nth-child(odd) {
-    background-color: pink;
+  background-color: pink;
 }
 .page-item:nth-child(even) {
-    background-color: beige;
+  background-color: beige;
 }
 
 .slideshowContainer {
-    position: relative;
-    margin: auto;
+  margin: auto;
+  position: relative;
 }
 
 .individualSlide {
-    padding-top: 20px;
-    display: none;
+  display: none;
+  padding-top: 20px;
 }
 
 #button-spacing {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 #button-pad {
-    margin-bottom: 10px;
+  margin-bottom: 10px;
 }
 
 .dotContainer {
-    text-align: center;
+  text-align: center;
 }
 
 .dot {
