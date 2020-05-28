@@ -12,8 +12,12 @@ nav {
     margin-bottom: 20px;
 }
 
-h2, p{
-    padding: 20px;
+h2 {
+    padding-top: 10px;
+}
+
+p {
+    padding-bottom: 10px;
 }
 
 footer {
@@ -71,6 +75,14 @@ ul#navigation li {
 .individualSlide {
     padding-top: 20px;
     display: none;
+}
+
+#button-spacing {
+    padding-top: 10px;
+}
+
+#button-pad {
+    margin-bottom: 10px;
 }
 
 .dotContainer {
