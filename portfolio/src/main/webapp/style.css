@@ -59,12 +59,11 @@ ul#navigation li {
     font-size: 20px;
 }
 
-.alt1{
-   background-color: pink;
+.page-item:nth-child(odd) {
+    background-color: pink;
 }
-
-.alt2{
-   background-color: beige;
+.page-item:nth-child(even) {
+    background-color: beige;
 }
 
 .slideshowContainer {
