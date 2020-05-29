@@ -8,49 +8,53 @@
   </head>
   <body>
     <div class="content">
-      <h1> Alisha Kewalramani </h1>
+      <h1>Alisha Kewalramani</h1>
       <nav>
-          <ul id="navigation">
-            <li><a href="index.html"> Home </a></li>
-            <li><a href="projects.html"> Projects </a></li>
-            <li><a href="hobbies.html"> Hobbies </a></li>
-           </ul>
+        <ul id="navigation">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="hobbies.html">Hobbies</a></li>
+        </ul>
       </nav>
-      <div class="alt1">
-        <div class="slideshow-container">
-            <div class="individual-slide">
-                <img src="images/alisha.jpeg"/>
-            </div>
-            <div class="individual-slide">
-                <img src="images/solopic.jpg"/>
-            </div>
-            <div class="individual-slide">
-                <img src="images/solopic2.jpg"/>
-            </div>
-            <div class="individual-slide">
-                <img src="images/solopic3.jpg"/>
-            </div>
-         </div>
-        <div id="dot-container">
-            <script> createDots(); </script>
+      <div class="page-item">
+        <div class="slideshowContainer">
+          <div class="individualSlide">
+            <img src="images/alisha.jpeg"/>
+          </div>
+          <div class="individualSlide">
+            <img src="images/solopic.JPG"/>
+          </div>
+          <div class="individualSlide">
+            <img src="images/solopic2.jpg"/>
+          </div>
+          <div class="individualSlide">
+            <img src="images/solopic3.JPG"/>
+          </div>
+        </div> <!-- #slideshowcontainer -->
+        <div class="dotContainer">
+          <span class="dot" onclick="currentSlide(1)"></span>
+          <span class="dot" onclick="currentSlide(2)"></span>
+          <span class="dot" onclick="currentSlide(3)"></span>
+          <span class="dot" onclick="currentSlide(4)"></span>
         </div>
-        <script> showNextSlide(); </script>
-        <p> I am an incoming junior at Cornell University studying Information Science and 
-            Systems Technology. Currently, I am a STEP intern at Google! One day, I hope 
-            to be a full time software engineer or product manager. Use the navigation bar to 
-            explore my linkedin, github, past projects, or hobbies! </p>
-      </div>
-      <div class="alt2">
-        <p>Don't know what to explore first? Click the button below for a random topic to explore about me:</p>
-        <button onclick="addRandomGreeting()">Click me!</button>
+        <script> showSlides(); </script>
+        <p>
+          I am an incoming junior at Cornell University studying Information Science and 
+          Systems Technology. Currently, I am a STEP intern at Google! One day, I hope 
+          to be a full time software engineer or product manager. Use the navigation bar to 
+          explore my linkedin, github, past projects, or hobbies!
+        </p>
+      </div> <!-- first page item -->
+      <div class="page-item">
+        <p id="button-spacing">Don't know what to explore first? Click the button below for a random topic to explore about me:</p>
+        <button id="button-pad" onclick="addRandomGreeting()">Click me!</button>
         <div id="greeting-container"></div>
       </div>
       <footer>
         <ul id="footer">
-            <li><a href="https://www.linkedin.com/in/ali-kew"> LinkedIn </a></li>
-            <li><a href="https://github.com/alikew24"> Github </a></li>
-         </ul>
+          <li><a href="https://www.linkedin.com/in/ali-kew">LinkedIn</a></li>
+          <li><a href="https://github.com/alikew24">Github</a></li>
       </footer>
-    </div>
+    </div> <!-- #content -->
   </body>
 </html>
