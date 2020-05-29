@@ -12,7 +12,7 @@ nav {
     margin-bottom: 20px;
 }
 
-h2, p{
+h2, p {
     padding: 20px;
 }
 
@@ -24,7 +24,6 @@ footer {
 }
 
 img {
-    /* padding-top: 20px; */
     height: 300px;
     width: 400px;
 }
@@ -55,25 +54,25 @@ ul#navigation li {
     font-size: 20px;
 }
 
-.alt1{
+.alt1 {
    background-color: pink;
 }
 
-.alt2{
+.alt2 {
    background-color: beige;
 }
 
-.slideshowContainer {
+.slideshow-container {
     position: relative;
     margin: auto;
 }
 
-.individualSlide {
+.individual-slide {
     padding-top: 20px;
     display: none;
 }
 
-.dotContainer {
+#dot-container {
     text-align: center;
 }
 
