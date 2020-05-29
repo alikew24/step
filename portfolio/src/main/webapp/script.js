@@ -13,13 +13,21 @@
 // limitations under the License.
 
 var slideIndex = 0;
-showSlides();
 
-function showSlides() {
-  var i;
-  var slides = document.getElementsByClassName("individualSlide");
+function createDots() {
+    var slides = document.getElementsByClassName("individual-slide");
+    const dotContainer = document.getElementById('dot-container');
+    for (var i = 0; i < slides.length; i++){
+        var span = document.createElement("SPAN");
+        span.className = "dot";
+        dotContainer.appendChild(span);
+    }
+}
+
+function showNextSlide() {
+  var slides = document.getElementsByClassName("individual-slide");
   var dots = document.getElementsByClassName("dot");
-  for (i = 0; i < slides.length; i++) {
+  for (var i = 0; i < slides.length; i++) {
     slides[i].style.display = "none";  
   }
   slideIndex++;
@@ -31,7 +39,7 @@ function showSlides() {
   }
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
-  setTimeout(showSlides, 3000); // Change image every 3 seconds
+  setTimeout(showNextSlide, 2000); // Change image every 2 seconds
 }
 
 /**
