@@ -48,6 +48,26 @@ function getMessage() {
   });
 }
 
+function getComments() {
+    fetch('/data').then(response => response.json()).then((comments) => { 
+    const commentsListElement = document.getElementById('comments-container');
+    commentsListElement.innerHTML = '';
+    commentsListElement.appendChild(
+        createListElement(comments[0]));
+    commentsListElement.appendChild(
+        createListElement(comments[1]));
+    commentsListElement.appendChild(
+        createListElement(comments[2]));
+  });
+}
+
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
+
 /**
  * Adds a random greeting to the page.
  */
