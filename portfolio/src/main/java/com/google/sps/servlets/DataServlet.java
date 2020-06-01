@@ -24,9 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
+  private static final String WELCOME_MESSAGE = "Welcome to my portfolio site! Hello Alisha!";
+
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello Alisha!</h1>");
+    response.getWriter().println(WELCOME_MESSAGE);
   }
 }
