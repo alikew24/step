@@ -42,6 +42,13 @@ function showNextSlide() {
   setTimeout(showNextSlide, 2000); // Change image every 2 seconds
 }
 
+function getMessage() {
+  fetch('/data').then(response => response.text()).then((message) => {
+    document.getElementById('message-container').innerText = message;
+  });
+}
+
+
 /**
  * Adds a random greeting to the page.
  */
