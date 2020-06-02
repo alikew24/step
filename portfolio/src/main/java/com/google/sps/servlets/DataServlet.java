@@ -30,13 +30,12 @@ public class DataServlet extends HttpServlet {
   private List<String> comments = new ArrayList<String>();
 
   @Override
-  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException  {
-
-    // convert the arraylist to json
+  public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    // convert the arraylist to json
     String json = convertToJsonUsingGson(comments);
 
-    // Send the JSON as the response
-    response.setContentType("application/json;");
+    // Send the JSON as the response
+    response.setContentType("application/json");
     response.getWriter().println(json);
   }
 
@@ -53,5 +52,6 @@ public class DataServlet extends HttpServlet {
   private String convertToJsonUsingGson(List<String> comments) {
     return new Gson().toJson(comments);
   }
+
 
 }
