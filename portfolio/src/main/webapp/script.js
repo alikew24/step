@@ -50,14 +50,12 @@ function getMessage() {
 
 function getComments() {
     fetch('/data').then(response => response.json()).then((comments) => { 
-    const commentsListElement = document.getElementById('comments-container');
-    commentsListElement.innerHTML = '';
-    commentsListElement.appendChild(
-        createListElement(comments[0]));
-    commentsListElement.appendChild(
-        createListElement(comments[1]));
-    commentsListElement.appendChild(
-        createListElement(comments[2]));
+      const commentsListElement = document.getElementById('comments-container');
+      commentsListElement.innerHTML = '';
+      for (var i = 0; i < comments.length; i++) {
+        commentsListElement.appendChild(
+          createListElement(comments[i]));
+      }
   });
 }
 

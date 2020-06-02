@@ -30,7 +30,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    ArrayList<String> sampleComments = new ArrayList<String>();
+    List<String> sampleComments = new ArrayList<String>();
     sampleComments.add("I love this page!");
     sampleComments.add("Wow, what a great site.");
     sampleComments.add("This Alisha girl seems really cool :)");
@@ -43,9 +43,7 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(json);
   }
 
-  private String convertToJsonUsingGson(ArrayList<String> comments) {
-    Gson gson = new Gson();
-    String json = gson.toJson(comments);
-    return json;
+  private String convertToJsonUsingGson(List<String> comments) {
+    return new Gson().toJson(comments);
   }
 }
