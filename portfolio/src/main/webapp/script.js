@@ -48,14 +48,15 @@ function getMessage() {
   });
 }
 
-function getComments() {
-    fetch('/data').then(response => response.json()).then((comments) => { 
-      const commentsListElement = document.getElementById('comments-container');
-      commentsListElement.innerHTML = '';
-      for (var i = 0; i < comments.length; i++) {
-        commentsListElement.appendChild(
-          createListElement(comments[i]));
-      }
+function getComments() {  
+  fetch('/data').then(response => response.json()).then((comments) => {
+    console.log(comments);  
+    const commentsListElement = document.getElementById('comments-container');  
+    commentsListElement.innerHTML = '';      
+    for (var i = 0; i < comments.length; i++) {       
+      commentsListElement.appendChild(        
+        createListElement(comments[i]));     
+    }
   });
 }
 
