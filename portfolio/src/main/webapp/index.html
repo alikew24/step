@@ -6,9 +6,9 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload="getMessage()">
+  <body onload="getComments()">
     <div class="content">
-      <div id="message-container"></div>
+      <ul id="comments-container"></ul>
       <h1>Alisha Kewalramani</h1>
       <nav>
         <ul id="navigation">
@@ -47,6 +47,13 @@
         <p id="button-spacing">Don't know what to explore first? Click the button below for a random topic to explore about me:</p>
         <button id="button-pad" onclick="addRandomGreeting()">Click me!</button>
         <div id="greeting-container"></div>
+      </div>
+      <div class="page-item">
+        <form action="/data" method="POST">
+          <p>Leave your thoughts and type a comment</p>
+          <textarea name="comment"></textarea>
+          <input type="submit" />
+        </form>
       </div>
       <footer>
         <ul id="footer">
