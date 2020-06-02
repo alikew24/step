@@ -55,11 +55,6 @@ function addQuoteToDom(quote) {
  * combines all of the above code into a single Promise chain. You can use
  * whichever syntax makes the most sense to you.
  */
-function getRandomQuoteUsingArrowFunctions() {
-  fetch('/random-quote').then(response => response.text()).then((quote) => {
-    document.getElementById('quote-container').innerText = quote;
-  });
-}
 
 /**
  * Another way to use fetch is by using the async and await keywords. This
