@@ -50,6 +50,7 @@ public class DataServlet extends HttpServlet {
       Entity commentEntity = new Entity("Comment");
       commentEntity.setProperty("comment", comment);
       datastore.put(commentEntity);
+      
       // Redirect back to index page
       response.sendRedirect("/index.html");
   }
