@@ -43,11 +43,11 @@ function showNextSlide() {
 }
 
 function getComments() {
-  let maxComments = 5;
+  let maxComments = 4;
   if (document.getElementById("maxComments") && document.getElementById("maxComments").value) {
     maxComments = document.getElementById("maxComments").value;
   }
-  fetch('/data?numComments='+maxComments).then(response => response.json()).then((comments) => { 
+  fetch('/data?numComments=' + maxComments).then(response => response.json()).then((comments) => { 
     const commentsListElement = document.getElementById('comments-container');
     commentsListElement.innerHTML = '';
     for (var i = 0; i < comments.length; i++) {

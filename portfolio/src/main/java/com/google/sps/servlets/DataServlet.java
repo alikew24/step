@@ -83,19 +83,14 @@ public class DataServlet extends HttpServlet {
     return new Gson().toJson(comments);
   }
 
-  private int getNumComments(HttpServletRequest request) { 
+  private int getNumComments(HttpServletRequest request) {
     String numCommentsString = request.getParameter("numComments");
-
-    // Convert the input to an int.
-    int numComments;
     try {
-      numComments = Integer.parseInt(numCommentsString);
+      return numCommentsString == null || numCommentsString.isEmpty() ? Integer.MIN_VALUE : Integer.parseInt(numCommentsString);
     } catch (NumberFormatException e) {
       System.err.println("Could not convert to int: " + numCommentsString);
       return Integer.MIN_VALUE;
     }
-
-    return numComments;
   }
 
 }
