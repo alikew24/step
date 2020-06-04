@@ -40,7 +40,7 @@ public class DataServlet extends HttpServlet {
     PreparedQuery results = datastore.prepare(query);
 
     int numComments = getNumComments(request);
-    if (numComments == -1) {
+    if (numComments < 0) {
       response.setContentType("text/html");
       response.getWriter().println("Please enter an integer greater than or equal to 0");
       return;
@@ -92,17 +92,10 @@ public class DataServlet extends HttpServlet {
       numComments = Integer.parseInt(numCommentsString);
     } catch (NumberFormatException e) {
       System.err.println("Could not convert to int: " + numCommentsString);
-      return -1;
-    }
-
-    // Check that the input is not negative.
-    if (numComments < 0) {
-      System.err.println("Cannot display negative comments: " + numCommentsString);
-      return -1;
+      return Integer.MIN_VALUE;
     }
 
     return numComments;
-
   }
 
 }
