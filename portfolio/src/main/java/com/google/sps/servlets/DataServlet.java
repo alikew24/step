@@ -38,12 +38,24 @@ public class DataServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment");
     PreparedQuery results = datastore.prepare(query);
- 
+
+    int numComments = getNumComments(request);
+    if (numComments == -1) {
+      response.setContentType("text/html");
+      response.getWriter().println("Please enter an integer greater than or equal to 0");
+      return;
+    }
+
     List<String> comments = new ArrayList<>();
+    int numIteratedComments = 0;
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
       String comment = (String) entity.getProperty("comment");
       comments.add(comment);
+      numIteratedComments++;
+      if (numIteratedComments >= numComments){
+          break;
+      }
     }
    
     // convert the arraylist to json
@@ -70,4 +82,27 @@ public class DataServlet extends HttpServlet {
   private String convertToJsonUsingGson(List<String> comments) {
     return new Gson().toJson(comments);
   }
+
+  private int getNumComments(HttpServletRequest request) { 
+    String numCommentsString = request.getParameter("numComments");
+
+    // Convert the input to an int.
+    int numComments;
+    try {
+      numComments = Integer.parseInt(numCommentsString);
+    } catch (NumberFormatException e) {
+      System.err.println("Could not convert to int: " + numCommentsString);
+      return -1;
+    }
+
+    // Check that the input is not negative.
+    if (numComments < 0) {
+      System.err.println("Cannot display negative comments: " + numCommentsString);
+      return -1;
+    }
+
+    return numComments;
+
+  }
+
 }

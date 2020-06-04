@@ -15,13 +15,13 @@
 var slideIndex = 0;
 
 function createDots() {
-    var slides = document.getElementsByClassName("individual-slide");
-    const dotContainer = document.getElementById('dot-container');
-    for (var i = 0; i < slides.length; i++){
-        var span = document.createElement("SPAN");
-        span.className = "dot";
-        dotContainer.appendChild(span);
-    }
+  var slides = document.getElementsByClassName("individual-slide");
+  const dotContainer = document.getElementById('dot-container');
+  for (var i = 0; i < slides.length; i++) {
+    var span = document.createElement("SPAN");
+    span.className = "dot";
+    dotContainer.appendChild(span);
+  }
 }
 
 function showNextSlide() {
@@ -42,20 +42,24 @@ function showNextSlide() {
   setTimeout(showNextSlide, 2000); // Change image every 2 seconds
 }
 
-function getMessage() {
-  fetch('/data').then(response => response.text()).then((message) => {
-    document.getElementById('message-container').innerText = message;
+function getComments() {
+  let maxComments = 5;
+  if (document.getElementById("maxComments") && document.getElementById("maxComments").value) {
+    maxComments = document.getElementById("maxComments").value;
+  }
+  fetch('/data?numComments='+maxComments).then(response => response.json()).then((comments) => { 
+    const commentsListElement = document.getElementById('comments-container');
+    commentsListElement.innerHTML = '';
+    for (var i = 0; i < comments.length; i++) {
+      commentsListElement.appendChild(
+      createListElement(comments[i]));
+    }
   });
 }
 
-function getComments() {
-    fetch('/data').then(response => response.json()).then((comments) => { 
-      const commentsListElement = document.getElementById('comments-container');
-      commentsListElement.innerHTML = '';
-      for (var i = 0; i < comments.length; i++) {
-        commentsListElement.appendChild(
-          createListElement(comments[i]));
-      }
+function deleteComments() {
+  fetch('/delete-data', {method: 'POST'}).then((response) => {
+      getComments();
   });
 }
 
