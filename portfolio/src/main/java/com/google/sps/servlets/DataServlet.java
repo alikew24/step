@@ -33,10 +33,13 @@ import javax.servlet.http.HttpServletResponse;
 public class DataServlet extends HttpServlet {
 
   private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private static final String ENTITY_COMMENT = "Comment";
+  private static final String PROPERTY_COMMENT = "comment";
+  private static final String PROPERTY_USERNAME = "username";
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Comment");
+    Query query = new Query(ENTITY_COMMENT);
     PreparedQuery results = datastore.prepare(query);
 
     int numComments = getNumComments(request);
@@ -50,14 +53,8 @@ public class DataServlet extends HttpServlet {
     int numIteratedComments = 0;
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String username;
-      if (entity.getProperty("username") == null) {
-          username = "anonymous";
-      }
-      else {
-          username = (String) entity.getProperty("username");
-      }
-      String comment = username + " says: " + (String) entity.getProperty("comment");
+      String username = getPropertyOrDefault(entity, PROPERTY_USERNAME, "anonymous");
+      String comment = username + " says: " + (String) entity.getProperty(PROPERTY_COMMENT);
       comments.add(comment);
       numIteratedComments++;
       if (numIteratedComments >= numComments){
@@ -76,33 +73,35 @@ public class DataServlet extends HttpServlet {
   @Override
    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       // Get the input from the form
-      if (!request.getParameter("comment").isEmpty()) {
-        String comment = request.getParameter("comment");
-        String name;
-        if (!request.getParameter("username").isEmpty()) {
-          name = request.getParameter("username");
-        }
-        else {
-          name = "anonymous";
-        }
-        Entity commentEntity = new Entity("Comment");
-        commentEntity.setProperty("comment", comment);
-        commentEntity.setProperty("username", name);
+      if (!request.getParameter(PROPERTY_COMMENT).isEmpty() && request.getParameter(PROPERTY_COMMENT) != null) {
+        String comment = request.getParameter(PROPERTY_COMMENT);
+        String name = getParameterOrDefault(request, PROPERTY_USERNAME, "anonymous");
+        Entity commentEntity = new Entity(ENTITY_COMMENT);
+        commentEntity.setProperty(PROPERTY_COMMENT, comment);
+        commentEntity.setProperty(PROPERTY_USERNAME, name);
         datastore.put(commentEntity);
-      }
-      else {
-        // Send empty response
-        response.setContentType("");
-        response.getWriter().println();
       }
       
       // Redirect back to index page
       response.sendRedirect("/index.html");
   }
 
-
   private String convertToJsonUsingGson(List<String> comments) {
     return new Gson().toJson(comments);
+  }
+
+  private String getParameterOrDefault(HttpServletRequest request, String parameter, String def) {
+    if (!request.getParameter(parameter).isEmpty() && request.getParameter(parameter) != null) {
+        return request.getParameter(parameter);
+      }
+    return def;
+  }
+
+  private String getPropertyOrDefault(Entity entity, String property, String def) {
+    if (entity.getProperty(property) == null) {
+        return def;
+      }
+    return (String) entity.getProperty(property);
   }
 
   private int getNumComments(HttpServletRequest request) {
