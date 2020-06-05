@@ -50,7 +50,14 @@ public class DataServlet extends HttpServlet {
     int numIteratedComments = 0;
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String comment = (String) entity.getProperty("comment");
+      String username;
+      if (entity.getProperty("username") == null) {
+          username = "anonymous";
+      }
+      else {
+          username = (String) entity.getProperty("username");
+      }
+      String comment = username + " says: " + (String) entity.getProperty("comment");
       comments.add(comment);
       numIteratedComments++;
       if (numIteratedComments >= numComments){
@@ -69,10 +76,25 @@ public class DataServlet extends HttpServlet {
   @Override
    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       // Get the input from the form
-      String comment = request.getParameter("comment");
-      Entity commentEntity = new Entity("Comment");
-      commentEntity.setProperty("comment", comment);
-      datastore.put(commentEntity);
+      if (!request.getParameter("comment").isEmpty()) {
+        String comment = request.getParameter("comment");
+        String name;
+        if (!request.getParameter("username").isEmpty()) {
+          name = request.getParameter("username");
+        }
+        else {
+          name = "anonymous";
+        }
+        Entity commentEntity = new Entity("Comment");
+        commentEntity.setProperty("comment", comment);
+        commentEntity.setProperty("username", name);
+        datastore.put(commentEntity);
+      }
+      else {
+        // Send empty response
+        response.setContentType("");
+        response.getWriter().println();
+      }
       
       // Redirect back to index page
       response.sendRedirect("/index.html");
