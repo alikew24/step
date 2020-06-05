@@ -52,7 +52,7 @@ function getComments() {
     commentsListElement.innerHTML = '';
     for (var i = 0; i < comments.length; i++) {
       commentsListElement.appendChild(
-      createListElement(comments[i]));
+      createListElement(comments[i])).className = "speech-bubble arrow bottom";
     }
   });
 }

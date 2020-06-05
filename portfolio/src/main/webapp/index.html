@@ -8,7 +8,6 @@
   </head>
   <body onload="getComments()">
     <div class="content">
-      <ul id="comments-container"></ul>
       <h1>Alisha Kewalramani</h1>
       <nav>
         <ul id="navigation">
@@ -48,20 +47,28 @@
         <button id="button-pad" onclick="addRandomGreeting()">Click me!</button>
         <div id="greeting-container"></div>
       </div>
-      <div class="page-item">
-        <form action="/data" method="POST">
-          <p>Leave your thoughts and type a comment</p>
-          <textarea name="comment"></textarea>
-          <input type="submit" />
-        </form>
-        <p>Display maximum of<input onChange="getComments()" type="number" id="maxComments" name="maxComments" min="0">comments</p>
-        <button onclick="deleteComments()">Delete Comments</button>
-      </div>
       <footer>
         <ul id="footer">
           <li><a href="https://www.linkedin.com/in/ali-kew">LinkedIn</a></li>
           <li><a href="https://github.com/alikew24">Github</a></li>
       </footer>
+      <div class="comments">
+        <h2>Comments</h2>
+        <div class="comment-features-container">
+          <p id="max-comment-feature">Display maximum of<input onChange="getComments()" type="number" id="maxComments" name="maxComments" min="0">comments</p>
+          <button id="delete-comment-feature" onclick="deleteComments()">Delete All Comments</button>
+        </div>
+        <hr>
+        <form id="comment-form" action="/data" method="POST">
+          <label for="comment">Leave your thoughts and type a comment:</label>
+          <br/>
+          <div id="commentInput">
+            <textarea id="comment" name="comment"></textarea>
+            <input id="commentButton" type="submit" />
+          </div>
+        </form>
+        <ul id="comments-container"></ul>
+      </div>
     </div> <!-- #content -->
   </body>
 </html>
