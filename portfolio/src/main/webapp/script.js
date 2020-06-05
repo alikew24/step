@@ -48,11 +48,15 @@ function getComments() {
     maxComments = document.getElementById("maxComments").value;
   }
   fetch('/data?numComments=' + maxComments).then(response => response.json()).then((comments) => { 
-    const commentsListElement = document.getElementById('comments-container');
-    commentsListElement.innerHTML = '';
+    const commentsElement = document.getElementById('comments-container');
+    const icon = document.createElement('i');
+    icon.className="icon-trash";
+    icon.setAttribute("onclick", "deleteSingularComment()")
+    commentsElement.innerHTML = '';
     for (var i = 0; i < comments.length; i++) {
-      commentsListElement.appendChild(
-      createListElement(comments[i]));
+      const singularComment = commentsElement.appendChild(
+      createPElement(comments[i]));
+      singularComment.appendChild(icon);
     }
   });
 }
@@ -63,11 +67,17 @@ function deleteComments() {
   });
 }
 
+function deleteSingularComment() {
+  fetch('/delete-comment', {method: 'POST'}).then((response) => {
+      getComments();
+  });
+}
+
 /** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
+function createPElement(text) {
+  const pElement = document.createElement('p');
+  pElement.innerText = text;
+  return pElement;
 }
 
 /**
