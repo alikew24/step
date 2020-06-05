@@ -22,6 +22,7 @@ footer {
   border: solid;
   height: 1%;
   list-style-type: none;
+  margin-top: 20px;
 }
 img {
   height: 300px;
@@ -88,4 +89,64 @@ ul#navigation li {
   margin-bottom: 20px;
   margin-top: 20px;
 }
-
+#comments-container {
+    list-style-type: none;
+    margin-left: 200px;
+}
+.comments {
+    background-color: beige;
+}
+.comments h2 {
+    margin-bottom: 0;
+}
+#maxComments {
+    height: 15px;
+    width: 25px;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+#commentInput {
+    margin-top: 10px;
+}
+#commentButton {
+    vertical-align: middle;
+}
+#comment {
+    vertical-align: middle;
+}
+.comment-features-container {
+    align-content: center;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+}
+#max-comment-feature {
+    float: left;
+    margin-left: 100px;
+    margin-bottom: 0;
+    margin-right: 40px;
+    padding-bottom: 0;
+}
+#delete-comment-feature {
+    float: right;
+    height: 30px;
+    margin-top: 10px;
+}
+.speech-bubble {
+    background-color: #f8f8f8;
+    border: 1px solid #c8c8c8;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 20px;
+    text-align: center;
+    width: 110px;
+}
+.speech-bubble .arrow {
+    border-style: solid;
+    position: absolute;
+}
+.bottom {
+    border-color: #c8c8c8 transparent transparent transparent;
+    border-width: 8px 8px 0px 8px;
+    bottom: -8px;
+}
