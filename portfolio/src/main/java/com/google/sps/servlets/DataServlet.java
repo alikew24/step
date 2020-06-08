@@ -20,6 +20,8 @@ import com.google.appengine.api.datastore.Entity;
 import com.google.appengine.api.datastore.PreparedQuery;
 import com.google.appengine.api.datastore.Query;
 import com.google.appengine.api.datastore.Query.SortDirection;
+import com.google.appengine.api.users.UserService;
+import com.google.appengine.api.users.UserServiceFactory;
 import java.util.*;
 import com.google.gson.Gson;
 import java.io.IOException;
@@ -32,11 +34,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+  private static final String ENTITY_COMMENT = "Comment";
+  private static final String PROPERTY_COMMENT = "comment";
+  private static final String PROPERTY_EMAIL = "email";
+  private final DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    Query query = new Query("Comment");
+    Query query = new Query(ENTITY_COMMENT);
     PreparedQuery results = datastore.prepare(query);
 
     int numComments = getNumComments(request);
@@ -50,8 +55,10 @@ public class DataServlet extends HttpServlet {
     int numIteratedComments = 0;
     for (Entity entity : results.asIterable()) {
       long id = entity.getKey().getId();
-      String comment = (String) entity.getProperty("comment");
-      comments.add(comment);
+      String comment = (String) entity.getProperty(PROPERTY_COMMENT);
+      String email = (String) entity.getProperty(PROPERTY_EMAIL);
+      String fullComment = email + ": " + comment;
+      comments.add(fullComment);
       numIteratedComments++;
       if (numIteratedComments >= numComments){
           break;
@@ -69,10 +76,15 @@ public class DataServlet extends HttpServlet {
   @Override
    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
       // Get the input from the form
-      String comment = request.getParameter("comment");
-      Entity commentEntity = new Entity("Comment");
-      commentEntity.setProperty("comment", comment);
-      datastore.put(commentEntity);
+      String comment = request.getParameter(PROPERTY_COMMENT);
+      if (comment != null && !comment.isEmpty()){
+        UserService userService = UserServiceFactory.getUserService();
+        String userEmail = userService.getCurrentUser().getEmail();
+        Entity commentEntity = new Entity(ENTITY_COMMENT);
+        commentEntity.setProperty(PROPERTY_COMMENT, comment);
+        commentEntity.setProperty(PROPERTY_EMAIL, userEmail);
+        datastore.put(commentEntity);
+      }
       
       // Redirect back to index page
       response.sendRedirect("/index.html");

@@ -57,6 +57,43 @@ function getComments() {
   });
 }
 
+function bodyOnload() {
+  showOrHideComments()
+  getComments();
+  navBarLogin();
+}
+
+function navBarLogin() {
+  fetch('/login').then(response => response.json()).then((loginStatus) => {
+    navBar = document.getElementById("navigation");
+    const liElement = document.createElement('li');
+    if (loginStatus == "in") {
+      liElement.innerHTML = "<a href='/loginlogout'>Logout</a>";
+      navBar.appendChild(liElement);
+    }
+    else {
+      liElement.innerHTML = "<a href='/loginlogout'>Login</a>";
+      navBar.appendChild(liElement);
+    }     
+  });  
+}
+
+function showOrHideComments() {
+  fetch('/login').then(response => response.json()).then((loginStatus) => {
+    console.log(loginStatus);
+    const comments = document.getElementById("login-accessible-comment-features");
+    const loginButton = document.getElementById("login-form");
+    if (loginStatus == "in") {
+      comments.className = "show-comments";
+      loginButton.className = "hide-login-form";
+    }
+    else {
+      loginButton.className = "show-login-form";
+      comments.className = "hide-comments";
+    }
+  });
+}
+
 function deleteComments() {
   fetch('/delete-data', {method: 'POST'}).then((response) => {
       getComments();
