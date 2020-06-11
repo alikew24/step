@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
   </head>
-  <body onload="getComments()">
+  <body onload="bodyOnload()">
     <div class="content">
       <h1>Alisha Kewalramani</h1>
       <nav>
@@ -56,19 +56,24 @@
       </footer>
       <div class="comments">
         <h2>Comments</h2>
-        <div class="comment-features-container">
-          <p id="max-comment-feature">Display maximum of<input onChange="getComments()" type="number" id="maxComments" name="maxComments" min="0">comments</p>
-          <button id="delete-comment-feature" onclick="deleteComments()">Delete All Comments</button>
-        </div>
-        <hr>
-        <form id="comment-form" action="/data" method="POST">
-          <label for="comment">Leave your thoughts and type a comment:</label>
-          <br/>
-          <div id="commentInput">
-            <textarea id="comment" name="comment"></textarea>
-            <input id="commentButton" type="submit" />
+        <div id="login-accessible-comment-features" class="hide-comments">
+          <div class="comment-features-container">
+            <p id="max-comment-feature">Display maximum of<input onChange="getComments()" type="number" id="maxComments" name="maxComments" min="0">comments</p>
+            <button id="delete-comment-feature" onclick="deleteComments()">Delete All Comments</button>
           </div>
-        </form>
+          <hr>
+          <form id="comment-form" action="/data" method="POST">
+            <label for="comment">Leave your thoughts and type a comment:</label>
+            <br/>
+            <div id="commentInput">
+              <textarea id="comment" name="comment"></textarea>
+              <input id="commentButton" type="submit" />
+            </div>
+          </form>
+        </div> <!-- #login-accessible-comment-features -->
+        <div id="login-form" class="hide-login-form">
+          <button onclick="document.location = '/loginlogout'">Login to add a comment!</button>
+        </div>
         <ul id="comments-container"></ul>
       </div>
     </div> <!-- #content -->

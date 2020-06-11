@@ -82,6 +82,12 @@ ul#navigation li {
   transition: background-color 0.6s ease;
   width: 15px;
 }
+.hide-comments {
+    display: none;
+}
+.show-comments {
+    visibility: visible;
+}
 .active {
   background-color: #717171;
 }
@@ -140,6 +146,12 @@ ul#navigation li {
   padding: 20px;
   text-align: center;
   width: 110px;
+}
+.hide-login-form {
+    display:none;
+}
+.show-login-form {
+    visibility: visible;
 }
 .speech-bubble .arrow {
   border-style: solid;
