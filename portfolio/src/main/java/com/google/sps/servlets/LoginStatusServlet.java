@@ -37,7 +37,6 @@ public class LoginStatusServlet extends HttpServlet {
       loginStatus = "in";
     } else {
       loginStatus = "out";
-
     }
 
     String json = convertToJsonUsingGson(loginStatus);
