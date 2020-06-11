@@ -34,7 +34,6 @@ public class LoginLogoutServlet extends HttpServlet {
       String logoutUrl = userService.createLogoutURL(urlToRedirectToAfterUserLogsOut);
 
       response.sendRedirect(logoutUrl);
-
     } else {
       String urlToRedirectToAfterUserLogsIn = "/index.html";
       String loginUrl = userService.createLoginURL(urlToRedirectToAfterUserLogsIn);
