@@ -162,3 +162,10 @@ ul#navigation li {
   border-width: 8px 8px 0px 8px;
   bottom: -8px;
 }
+#map {
+  align-content: center;
+  height: 600px;
+  margin: auto;
+  padding: 10px;
+  width: 400px;
+}
