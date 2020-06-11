@@ -57,6 +57,7 @@ function getComments() {
   });
 }
 
+
 function deleteComments() {
   fetch('/delete-data', {method: 'POST'}).then((response) => {
       getComments();
@@ -68,6 +69,110 @@ function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
+}
+
+/** Creates a map and adds it to the page. */
+function createMap() {
+  const map = new google.maps.Map(
+      document.getElementById('map'),
+      {center: {lat: 40.710101, lng: -74.355919}, zoom: 16,
+      styles: [
+            {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+            {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+            {
+              featureType: 'administrative.locality',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'geometry',
+              stylers: [{color: '#263c3f'}]
+            },
+            {
+              featureType: 'poi.park',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#6b9a76'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry',
+              stylers: [{color: '#38414e'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#212a37'}]
+            },
+            {
+              featureType: 'road',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#9ca5b3'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry',
+              stylers: [{color: '#746855'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'geometry.stroke',
+              stylers: [{color: '#1f2835'}]
+            },
+            {
+              featureType: 'road.highway',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#f3d19c'}]
+            },
+            {
+              featureType: 'transit',
+              elementType: 'geometry',
+              stylers: [{color: '#2f3948'}]
+            },
+            {
+              featureType: 'transit.station',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#d59563'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'geometry',
+              stylers: [{color: '#17263c'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.fill',
+              stylers: [{color: '#515c6d'}]
+            },
+            {
+              featureType: 'water',
+              elementType: 'labels.text.stroke',
+              stylers: [{color: '#17263c'}]
+            }
+          ]
+        });
+  addLandmark(map, 40.712741, -74.353634, 'Overlook Hospital', 'This is Overlook Hospital, where I was born! Fun fact: my mom walked to the hospital when she was in labor with me!');
+  addLandmark(map, 40.710144, -74.355775, 'My house', 'This is my house, where I have lived my entire life! We have had it for over 25 years.');
+  addLandmark(map, 40.720444, -74.371156, 'Summit High School', 'This is the highschool I attended. Summit High is home to a lot of my favorite memories, where I met my best friends, and where I took my first coding class!');
+  addLandmark(map, 40.715993, -74.360045, 'Summit YMCA', 'This is the YMCA, where I had swim practices from second grade to my senior year of high school! I was on a club team called the Summit Seals, and swam competitively for over 10 years');
+  addLandmark(map, 40.707735, -74.365906, 'Memorial Field', 'This is memorial field, a park right by my house. This is where I learnt how to ride a bike, hung out with my friends, and played tennis in high school');
+}
+
+/** Adds a marker that shows an info window when clicked. */
+function addLandmark(map, lat, lng, title, description) {
+  const marker = new google.maps.Marker(
+      {position: {lat: lat, lng: lng}, map: map, title: title, animation: google.maps.Animation.DROP});
+
+  const infoWindow = new google.maps.InfoWindow({content: description});
+  marker.addListener('click', () => {
+    infoWindow.open(map, marker);
+  });
 }
 
 /**
@@ -93,4 +198,3 @@ function addRandomGreeting() {
       greetingContainer.innerHTML = "<a href='projects.html'> Projects </a>";
   }
 }
-
