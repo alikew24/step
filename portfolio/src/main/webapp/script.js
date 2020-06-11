@@ -157,7 +157,7 @@ function createMap() {
             }
           ]
         });
-  addLandmark(map, 40.712741, -74.353634, 'Overlook Hospital', 'This is Overlook Hopsital, where I was born! Fun fact: my mom walked to the hospital when she was in labor with me!');
+  addLandmark(map, 40.712741, -74.353634, 'Overlook Hospital', 'This is Overlook Hospital, where I was born! Fun fact: my mom walked to the hospital when she was in labor with me!');
   addLandmark(map, 40.710144, -74.355775, 'My house', 'This is my house, where I have lived my entire life! We have had it for over 25 years.');
   addLandmark(map, 40.720444, -74.371156, 'Summit High School', 'This is the highschool I attended. Summit High is home to a lot of my favorite memories, where I met my best friends, and where I took my first coding class!');
   addLandmark(map, 40.715993, -74.360045, 'Summit YMCA', 'This is the YMCA, where I had swim practices from second grade to my senior year of high school! I was on a club team called the Summit Seals, and swam competitively for over 10 years');
