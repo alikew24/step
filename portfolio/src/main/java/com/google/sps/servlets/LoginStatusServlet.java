@@ -16,6 +16,7 @@ package com.google.sps.servlets;
 
 import com.google.appengine.api.users.UserService;
 import com.google.appengine.api.users.UserServiceFactory;
+import com.google.sps.data.LoginStatus;
 import com.google.gson.Gson;
 import java.io.IOException;
 import javax.servlet.annotation.WebServlet;
@@ -30,21 +31,21 @@ public class LoginStatusServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
-    String loginStatus = "out";
+    boolean isLoggedIn;
 
     UserService userService = UserServiceFactory.getUserService();
     if (userService.isUserLoggedIn()) {
-      loginStatus = "in";
+      isLoggedIn = true;
     } else {
-      loginStatus = "out";
-
+      isLoggedIn = false;
     }
 
+    LoginStatus loginStatus = new LoginStatus(isLoggedIn);
     String json = convertToJsonUsingGson(loginStatus);
     response.getWriter().println(json);
   }
 
-  private String convertToJsonUsingGson(String loginStatus) {
+  private String convertToJsonUsingGson(LoginStatus loginStatus) {
     return new Gson().toJson(loginStatus);
   }
 }

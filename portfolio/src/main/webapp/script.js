@@ -67,7 +67,7 @@ function navBarLogin() {
   fetch('/login').then(response => response.json()).then((loginStatus) => {
     navBar = document.getElementById("navigation");
     const liElement = document.createElement('li');
-    if (loginStatus == "in") {
+    if (loginStatus.isLoggedIn == true) {
       liElement.innerHTML = "<a href='/loginlogout'>Logout</a>";
       navBar.appendChild(liElement);
     }
@@ -83,7 +83,7 @@ function showOrHideComments() {
     console.log(loginStatus);
     const comments = document.getElementById("login-accessible-comment-features");
     const loginButton = document.getElementById("login-form");
-    if (loginStatus == "in") {
+    if (loginStatus.isLoggedIn == true) {
       comments.className = "show-comments";
       loginButton.className = "hide-login-form";
     }
