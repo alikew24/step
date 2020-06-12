@@ -78,6 +78,11 @@ function navBarLogin() {
   });  
 }
 
+function mapPageOnload() {
+    navBarLogin();
+    createMap();
+}
+
 function showOrHideComments() {
   fetch('/login').then(response => response.json()).then((loginStatus) => {
     console.log(loginStatus);
