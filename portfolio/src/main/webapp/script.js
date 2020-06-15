@@ -79,8 +79,8 @@ function navBarLogin() {
 }
 
 function mapPageOnload() {
-    navBarLogin();
-    createMap();
+  navBarLogin();
+  createMap();
 }
 
 function showOrHideComments() {
