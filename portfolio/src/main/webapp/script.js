@@ -60,7 +60,6 @@ function getComments() {
 function bodyOnload() {
   showOrHideComments()
   getComments();
-  navBarLogin();
 }
 
 function navBarLogin() {
@@ -234,3 +233,7 @@ function addRandomGreeting() {
       greetingContainer.innerHTML = "<a href='projects.html'> Projects </a>";
   }
 }
+
+window.addEventListener('DOMContentLoaded', (event) => {
+  navBarLogin();
+});
