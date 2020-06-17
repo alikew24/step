@@ -78,7 +78,7 @@ public final class FindMeetingQuery {
       return toReturn;
     }
 
-    return (Arrays.asList(TimeRange.WHOLE_DAY));
+    return Arrays.asList(TimeRange.WHOLE_DAY);
   }
 
   //given a list of conflicts, invert the conflict times to find available times
