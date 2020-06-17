@@ -27,7 +27,7 @@ import java.util.stream.Stream;
 
 public final class FindMeetingQuery {
   
-  //returns a list of possible times the meeting can be held- includes optional attendees if possible
+  /** Returns a list of possible times the meeting can be held- includes optional attendees if possible. */
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     Collection<String> attendees = new ArrayList<String>(request.getAttendees());
     Collection<String> optionalAttendees = new ArrayList<String>(request.getOptionalAttendees());
