@@ -62,7 +62,7 @@ public final class FindMeetingQuery {
     return findTimes(attendees, events, duration);
   }
 
-  //given a list of attendees and events, find meeting times that work
+  /** Given a list of attendees and events, returns meeting times that work. */
   public Collection<TimeRange> findTimes(Collection<String> attendees, Collection<Event> events, long duration) {
     List<TimeRange> conflicts = new ArrayList<TimeRange>();
     Collection<TimeRange> toReturn = new ArrayList<TimeRange>();
