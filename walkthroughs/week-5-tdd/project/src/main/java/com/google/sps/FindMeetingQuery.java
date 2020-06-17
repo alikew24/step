@@ -38,7 +38,7 @@ public final class FindMeetingQuery {
       return Arrays.asList();
     }
     // no attendees or optional attendees
-    if (attendees.size() == 0 && optionalAttendees.size() == 0) {
+    if (attendees.isEmpty() && optionalAttendees.isEmpty()) {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
     // only mandatory attendees
