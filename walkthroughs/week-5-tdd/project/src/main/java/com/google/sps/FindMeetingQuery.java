@@ -73,7 +73,7 @@ public final class FindMeetingQuery {
       }
     }
 
-    if (conflicts.size() >0) {
+    if (!conflicts.isEmpty()) {
       toReturn = conjoinTimes(conflicts, (int) duration);
       return toReturn;
     }
