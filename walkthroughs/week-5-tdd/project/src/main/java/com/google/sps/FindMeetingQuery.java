@@ -112,10 +112,7 @@ public final class FindMeetingQuery {
 
   //returns true if the two lists contain some of the same attendees
   public Boolean containsAttendees(Collection<String> actualAttendees, Collection<String> eventAttendees) {
-    if (Collections.disjoint(actualAttendees, eventAttendees)) {
-      return false;
-    }
-    return true;
+    return !Collections.disjoint(actualAttendees, eventAttendees);
   }
 
 }
