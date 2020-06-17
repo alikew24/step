@@ -75,7 +75,7 @@ public final class FindMeetingQuery {
 
     if (conflicts.size() >0) {
       toReturn = conjoinTimes(conflicts, (int) duration);
-      return (toReturn);
+      return toReturn;
     }
 
     return (Arrays.asList(TimeRange.WHOLE_DAY));
