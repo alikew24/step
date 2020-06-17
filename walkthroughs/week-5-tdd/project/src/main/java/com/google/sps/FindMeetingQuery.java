@@ -42,7 +42,7 @@ public final class FindMeetingQuery {
       return Arrays.asList(TimeRange.WHOLE_DAY);
     }
     // only mandatory attendees
-    if (attendees.size() > 0 && optionalAttendees.size() ==0){
+    if (!attendees.isEmpty() && optionalAttendees.isEmpty()){
       return findTimes(attendees, events, duration);
     }
     // only optional attendees
