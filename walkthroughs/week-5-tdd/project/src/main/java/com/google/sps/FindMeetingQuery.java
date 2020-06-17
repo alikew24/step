@@ -50,7 +50,7 @@ public final class FindMeetingQuery {
       return findTimes(optionalAttendees, events, duration);
     }
     // both optional and mandatory attendees, try merging the two attendee lists together and finding meeting times.
-    if (attendees.size() > 0 && optionalAttendees.size() >0){
+    if (!attendees.isEmpty() && !optionalAttendees.isEmpty()){
       attendees.addAll(optionalAttendees);
       Collection<TimeRange> toReturn = findTimes(attendees, events, duration);
       if (toReturn.size() > 0) {
