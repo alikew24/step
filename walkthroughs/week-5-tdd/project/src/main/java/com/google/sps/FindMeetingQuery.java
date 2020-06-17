@@ -37,7 +37,7 @@ public final class FindMeetingQuery {
     if (duration > TimeRange.WHOLE_DAY.duration()) {
       return Arrays.asList();
     }
-    //no attendees or optional attendees
+    // no attendees or optional attendees
     if (attendees.size() == 0 && optionalAttendees.size() == 0) {
       return (Arrays.asList(TimeRange.WHOLE_DAY));
     }
