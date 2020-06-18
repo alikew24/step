@@ -169,7 +169,6 @@ public final class FindMeetingQueryTest {
             TimeRange.fromStartEnd(TIME_1000AM, TIME_1100AM, false), TimeRange.fromStartEnd(TIME_1200PM, TimeRange.END_OF_DAY, true));
 
     Assert.assertEquals(expected, actual);
-        
   }
 
   @Test
@@ -405,4 +404,3 @@ public final class FindMeetingQueryTest {
     Assert.assertEquals(expected, actual);
   }
 }
-
