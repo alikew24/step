@@ -25,6 +25,7 @@ import java.util.LinkedList;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+/** Used to query through a list of events and attendees to find all times that can work for a meeting */
 public final class FindMeetingQuery {
   
   /** Returns a list of possible times the meeting can be held- includes optional attendees if possible. */
@@ -51,19 +52,20 @@ public final class FindMeetingQuery {
     }
     // both optional and mandatory attendees, try merging the two attendee lists together and finding meeting times.
     if (!attendees.isEmpty() && !optionalAttendees.isEmpty()){
-      attendees.addAll(optionalAttendees);
-      Collection<TimeRange> toReturn = findTimes(attendees, events, duration);
+      List<String> combinedAttendees = new ArrayList<String>();
+      combinedAttendees.addAll(attendees);
+      combinedAttendees.addAll(optionalAttendees);
+      Collection<TimeRange> toReturn = findTimes(combinedAttendees, events, duration);
       if (toReturn.size() > 0) {
         return toReturn;
       }
     }
     // if no meeting time exists such that mandatory and optional attendees can all go, just find meeting times for mandatory attendees
-    attendees.removeAll(optionalAttendees);
     return findTimes(attendees, events, duration);
   }
 
-  /** Given a list of attendees and events, returns meeting times that work. */
-  public Collection<TimeRange> findTimes(Collection<String> attendees, Collection<Event> events, long duration) {
+  /** Given a list of attendees and events, returns meeting times that work given the necessary duration. */
+  private Collection<TimeRange> findTimes(Collection<String> attendees, Collection<Event> events, long duration) {
     List<TimeRange> conflicts = new ArrayList<TimeRange>();
     Collection<TimeRange> toReturn = new ArrayList<TimeRange>();
  
@@ -74,15 +76,15 @@ public final class FindMeetingQuery {
     }
 
     if (!conflicts.isEmpty()) {
-      toReturn = conjoinTimes(conflicts, (int) duration);
+      toReturn = findNonConflictingTimes(conflicts, (int) duration);
       return toReturn;
     }
 
     return Arrays.asList(TimeRange.WHOLE_DAY);
   }
 
-  //given a list of conflicts, invert the conflict times to find available times
-  public Collection<TimeRange> conjoinTimes(List<TimeRange> conflicts, int duration) {
+  /** Given a list of conflicts, invert the conflict times to find available times given the necessary duration of the meeting */
+  private Collection<TimeRange> findNonConflictingTimes(List<TimeRange> conflicts, int duration) {
     Collection<TimeRange> toReturn = new ArrayList<TimeRange>();
     int start = TimeRange.START_OF_DAY;
     int end = TimeRange.END_OF_DAY;
@@ -96,7 +98,7 @@ public final class FindMeetingQuery {
         start = conflict.end();
       }
       else if (conflict.start() <= start && conflict.end() < start) {
-        break;
+        continue;
       }
  
       start = conflict.end();
@@ -110,8 +112,8 @@ public final class FindMeetingQuery {
     return toReturn;
   }
 
-  //returns true if the two lists contain some of the same attendees
-  public Boolean containsAttendees(Collection<String> actualAttendees, Collection<String> eventAttendees) {
+  /** Returns true if the two lists contain some of the same attendees */
+  private Boolean containsAttendees(Collection<String> actualAttendees, Collection<String> eventAttendees) {
     return !Collections.disjoint(actualAttendees, eventAttendees);
   }
 
