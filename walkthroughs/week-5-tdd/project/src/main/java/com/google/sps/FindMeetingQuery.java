@@ -102,7 +102,6 @@ public final class FindMeetingQuery {
       }
  
       start = conflict.end();
- 
     }
     if (end-start >= duration) {
       TimeRange toAdd = TimeRange.fromStartDuration(start, end-start +1);
